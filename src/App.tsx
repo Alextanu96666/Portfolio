@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Menubar } from './components/Menu/Menubar';
+import { db } from './firebase';
+import { collection, getDocs, query, doc, onSnapshot } from 'firebase/firestore'
+import { useEffect } from 'react';
+
+
 
 function App() {
+
+  const menubarCollection = collection(db, 'menubar')
+
+  useEffect( () => {
+    
+    // const getMenubar = async () => {
+    //     let data = await getDocs(menubarCollection)
+    //     let links = data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    //     console.log(links)
+    //     // return data.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    // }
+
+    // getMenubar()
+  }, [])
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Menubar test = {'Test'} />
     </div>
   );
 }
